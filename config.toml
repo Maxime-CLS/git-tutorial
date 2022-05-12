@@ -1,0 +1,17 @@
+baseURL = "https://maxime-cls.github.io/git-tutorial/"
+title = "Git Tutoriel"
+theme = "hugo-theme-learn"
+languageCode = "fr-FR"
+languageName = "Français"
+
+[params]
+themeVariant = "blue"
+author = "Maxime Calves"
+description = "Tutoriel sur Git"
+showVisitedLinks = true
+disableSearch = false
+disableLandingPageButton = true
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
