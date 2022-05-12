@@ -1,0 +1,303 @@
+<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.98.0"><meta name=description content="Tutoriel sur Git"><meta name=author content="Maxime Calves"><link rel=icon href=/git-tutorial/images/favicon.png type=image/png><title>Lab - Git :: Git Tutoriel</title><link href=/git-tutorial/css/nucleus.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/fontawesome-all.min.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/hybrid.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/featherlight.min.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/perfect-scrollbar.min.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/auto-complete.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/atom-one-dark-reasonable.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/theme.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/tabs.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/hugo-theme.css?1652370259 rel=stylesheet><link href=/git-tutorial/css/theme-blue.css?1652370259 rel=stylesheet><script src=/git-tutorial/js/jquery-3.3.1.min.js?1652370259></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/git-tutorial/git/git/><nav id=sidebar class=showVisitedLinks><div id=header-wrapper><div id=header><img src=../../../../git-tutorial/media/logo.png></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/git-tutorial/js/lunr.min.js?1652370259></script>
+<script type=text/javascript src=/git-tutorial/js/auto-complete.js?1652370259></script>
+<script type=text/javascript>var baseurl="https://maxime-cls.github.io/git-tutorial/"</script><script type=text/javascript src=/git-tutorial/js/search.js?1652370259></script></div><div class=highlightable><ul class=topics><li data-nav-id=/git-tutorial/git/ title=Elastic class="dd-item
+parent"><a href=/git-tutorial/git/>Elastic
+<i class="fas fa-check read-icon"></i></a><ul><li data-nav-id=/git-tutorial/git/git/ title="Lab - Git" class="dd-item active"><a href=/git-tutorial/git/git/>Lab - Git
+<i class="fas fa-check read-icon"></i></a></li></ul></li></ul><section id=prefooter><hr><ul><li><a class=padding href=# data-clear-history-toggle><i class="fas fa-history fa-fw"></i> Clear History</a></li></ul></section><section id=footer><p>Built with <a href=https://github.com/matcornic/hugo-theme-learn><i class="fas fa-heart"></i></a> from <a href=https://getgrav.org>Grav</a> and <a href=https://gohugo.io/>Hugo</a></p></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i></a></span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links><a href=/git-tutorial/>Git Tutoriel</a> > <a href=/git-tutorial/git/>Elastic</a> > Lab - Git</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#créer-un-nouveau-dépôt-en-ligne-de-commande>Créer un nouveau dépôt en ligne de commande</a></li><li><a href=#ajouter-des-changements-sur-le-code>Ajouter des changements sur le code</a></li></ul></li><li><a href=#gitops>GitOps</a><ul><li><a href=#terraform>Terraform</a></li><li><a href=#créer-une-modification-de-ma-configuration>Créer une modification de ma configuration</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Lab - Git</h1><h3 id=créer-un-nouveau-dépôt-en-ligne-de-commande>Créer un nouveau dépôt en ligne de commande</h3><pre tabindex=0><code>git init    # Initialise le répertoire .git
+touch README.md
+git add README.md   # Ajout de la modification
+git commit -m &#34;first commit&#34;    # Message liée à la modification
+git remote add origin https://github.com/Maxime-CLS/git-tutorial.git    # Ajout d&#39;un dépôt git distant
+git push -u origin master   # Pousse les modifications sur le dépôt distant
+touch .gitignore
+git add .gitignore  # Ajout de la modification
+git commit -m &#34;Add .gitignore&#34;  # Message liée à la modification
+git push origin master  # Pousse les modifications sur le dépôt distant
+</code></pre><h3 id=ajouter-des-changements-sur-le-code>Ajouter des changements sur le code</h3><pre tabindex=0><code>echo &#34;# Hello :smile:&#34; &gt; README.md
+cat README.md
+touch tuto.txt
+git status  # Affiche le modification de la branche
+</code></pre><pre tabindex=0><code>Sur la branche master
+Votre branche est à jour avec &#39;origin/master&#39;.
+
+Modifications qui ne seront pas validées :
+  (utilisez &#34;git add &lt;fichier&gt;...&#34; pour mettre à jour ce qui sera validé)
+  (utilisez &#34;git restore &lt;fichier&gt;...&#34; pour annuler les modifications dans le répertoire de travail)
+	modifié :         README.md
+
+Fichiers non suivis:
+  (utilisez &#34;git add &lt;fichier&gt;...&#34; pour inclure dans ce qui sera validé)
+	tuto.txt
+
+aucune modification n&#39;a été ajoutée à la validation (utilisez &#34;git add&#34; ou &#34;git commit -a&#34;)
+</code></pre><h4 id=afficher-lensemble-des-modifications>Afficher l&rsquo;ensemble des modifications</h4><pre tabindex=0><code>git diff    # Affiche les modifications apportés dans les fichiers
+</code></pre><pre tabindex=0><code>diff --git a/README.md b/README.md
+index 69974f6..2027b47 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,2 @@
++# Hello :smile:
+</code></pre><h4 id=afficher-les-modifications-sur-un-fichier-spécifique>Afficher les modifications sur un fichier spécifique</h4><pre tabindex=0><code>git diff README.md  # Affiche les modifications apportés sur un fichier spécifique
+</code></pre><pre tabindex=0><code>diff --git a/README.md b/README.md
+index 69974f6..2027b47 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,2 @@
++# Hello :smile:
+</code></pre><p>Configuration globale de l&rsquo;outil git pour les diff et les merge :</p><pre tabindex=0><code>git config --global diff.tool vimdiff
+git config --global difftool.prompt false
+git config --global difftool.vimdiff trustExitCode true
+
+git config --global merge.tool vimdiff
+git config --global mergetool.vimdiff trustExitCode true
+</code></pre><pre tabindex=0><code>git difftool    # Outil de visualisation des modifications dans des fichiers
+</code></pre><p>Changer de fenêtre : <code>Ctrl + w</code></p><h4 id=ajouter-et-visualiser-les-modifications>Ajouter et visualiser les modifications</h4><pre tabindex=0><code>git add .
+git diff    # Affiche les modifications apportés dans un fichier
+git diff --staged
+git log     # Affiche l&#39;historique des modifications
+git log --pretty=format:&#34;%h %an %ar - %s&#34;   # Formate l&#39;affichage de l&#39;historique des modifications
+git commit -m &#34;Add tuto.txt and modify README.md&#34;
+git push origin master
+git show # Affiche les modifications apportés dans un fichier
+</code></pre><h4 id=annuler-des-changements>Annuler des changements</h4><p>Retour à la dernière modification de la branche distante</p><pre tabindex=0><code>echo &#34;test&#34; &gt; tuto.txt
+git checkout .  # Annule les modifications non-ajoutés
+echo &#34;test&#34; &gt; tuto.txt
+git add tuto.txt
+git reset HEAD  # Annule les modifications ajoutés
+echo &#34;test&#34; &gt; tuto.txt
+git reset --hard HEAD # Annule les modifications ajoutés
+echo &#34;test&#34; &gt; tuto.txt
+git add tuto.txt
+git commit -m &#34;Modify tuto.txt&#34;
+git push origin master
+git revert HEAD~1   # Supprimer le dernier commit
+</code></pre><h4 id=récupérer-les-modifications-de-branches>Récupérer les modifications de branches</h4><p>Ajouter au travers de l&rsquo;interface grahique de GitHub un nouveau fichier.</p><p>Ajouter en local un autre fichier :</p><pre tabindex=0><code>touch script.sh
+git add script.sh
+git commit -m &#34;Add script.sh&#34;
+git push orign master
+</code></pre><pre tabindex=0><code> ! [rejected]        master -&gt; master (fetch first)
+error: impossible de pousser des références vers &#39;https://github.com/Maxime-CLS/git-tutorial.git&#39;
+astuce: Les mises à jour ont été rejetées car la branche distante contient du travail que
+astuce: vous n&#39;avez pas en local. Ceci est généralement causé par un autre dépôt poussé
+astuce: vers la même référence. Vous pourriez intégrer d&#39;abord les changements distants
+astuce: (par exemple &#39;git pull ...&#39;) avant de pousser à nouveau.
+astuce: Voir la &#39;Note à propos des avances rapides&#39; dans &#39;git push --help&#39; pour plus d&#39;information.
+</code></pre><p>Un problème pour pousser ces modifications car notre branche master n&rsquo;est pas à jour&mldr;
+Du coup on va récupérer les modifications de la branche master comme ci on avait fait un pull request avant de faire des commits.</p><pre tabindex=0><code>git pull --rebase
+git push origin master
+git log
+</code></pre><p>Pour configurer son outil git à faire des pull rebase par défaut :</p><pre tabindex=0><code>git config --global branch.autoSetupRebase always
+git config --global pull.rebase = preserve
+</code></pre><h4 id=manipuler-des-branches>Manipuler des branches</h4><pre tabindex=0><code>git branch develop  # Créer une branche
+git checkout develop    # Changement de branche
+git checkout -b devlop_bis  # Créer et change de branche
+git branch  # Affiche les branches locales
+git branch -va  # Affiche les branches locales et distantes
+git checkout develop    #Changement de branche
+echo &#34;#/bin/bash&#34; &gt; script.sh
+git add script.sh
+git commit -m &#34;modify script.sh&#34;
+git push origin develop
+git checkout master # Changement de branche
+git merge develop   # Fusion de la branche develop dans master
+git branch -d develop_bis   # Supprimer une branche locale
+git push origin --delete develop_bis    # Supprimer une branche distante
+</code></pre><h4 id=reécriture-de-lhistorique>Reécriture de l&rsquo;historique</h4><p>La réécriture de l&rsquo;historique des référentiels se fait en utilisant <strong>git rebase -interactive</strong>. En mettant le rebase en mode interactif, vous avez plus de contrôle sur les modifications que vous souhaitez apporter. Après le lancement en mode interactif, six commandes vous sont données pour chaque validation dans le référentiel.</p><p>Dans cet exemple, nous voulons changer le commit. Pour le mettre dans cet état, nous devons changer le mot &ldquo;pick&rdquo; à côté du commit pour qu&rsquo;il corresponde à l&rsquo;action que vous souhaitez effectuer en fonction de la liste affichée dans la fenêtre Vim, dans ce cas &ldquo;reformuler&rdquo;.</p><h5 id=reword>Reword</h5><pre tabindex=0><code>git rebase -i --root
+</code></pre><pre tabindex=0><code>pick 23e26d2 first commit
+pick cd08c24 Add .gitignore
+pick 898f4a2 UPdate README.md
+pick d7f9d0c remove REAME.md
+pick 965fa4c Ajout de fichier
+pick ac106ed Modify tuto.txt
+pick d99ae1d Create tuto.txt
+pick 4930601 Add test.sh
+pick a016630 modify test.sh
+
+# Rebasage de a016630 sur 4930601 (9 commandes)
+#
+# Commandes :
+#  p, pick &lt;commit&gt; = utiliser le commit
+#  r, reword &lt;commit&gt; = utiliser le commit, mais reformuler son message
+#  e, edit &lt;commit&gt; = utiliser le commit, mais s&#39;arrêter pour le modifier
+#  s, squash &lt;commit&gt; = utiliser le commit, mais le fusionner avec le précédent
+#  f, fixup &lt;commit&gt; = comme &#34;squash&#34;, mais en éliminant son message
+#  x, exec &lt;commit&gt; = lancer la commande (reste de la ligne) dans un shell
+#  b, break = s&#39;arrêter ici (on peut continuer ensuite avec &#39;git rebase --continue&#39;)
+#  d, drop &lt;commit&gt; = supprimer le commit
+#  l, label &lt;label&gt; = étiqueter la HEAD courante avec un nom
+#  t, reset &lt;label&gt; = réinitialiser HEAD à label
+#  m, merge [-C &lt;commit&gt; | -c &lt;commit&gt;] &lt;label&gt; [# &lt;uniligne&gt;]
+#          créer un commit de fusion utilisant le message de fusion original
+#          (ou l&#39;uniligne, si aucun commit de fusion n&#39;a été spécifié).
+#          Utilisez -c &lt;commit&gt; pour reformuler le message de validation.
+#
+# Vous pouvez réordonner ces lignes ; elles sont exécutées de haut en bas.
+#
+# Si vous éliminez une ligne ici, LE COMMIT CORRESPONDANT SERA PERDU.
+#
+# Cependant, si vous effacez tout, le rebasage sera annulé.
+#
+</code></pre><p>On modifie le message de commit suivante <strong>pick a016630 modify test.sh</strong> :</p><pre tabindex=0><code>...
+reword a016630 modify test.sh
+...
+</code></pre><p>On enregistre et quitte et on affiche les modifications :</p><pre tabindex=0><code>git log --oneline
+</code></pre><h5 id=squash>Squash</h5><p>Une alternative plus rapide pour modifier le dernier message de validation consiste à utiliser <code>git commit --amend</code></p><p>Une série de 3 commits différents a été effectuée dans votre environnement local. À l&rsquo;époque, ces engagements avaient du sens, mais ils ne doivent plus être qu&rsquo;un seul commit. En utilisant Rebase, nous devons écraser les commits ensemble.</p><p>En utilisant git rebase &ndash;interactive HEAD~3, nous avons la plage de commits de HEAD au dernier 0. Pour écraser nous avons besoin d&rsquo;un commit de base dans lequel tout sera écrasé. En tant que tel, laissez le premier commit sur &ldquo;pick&rdquo; mais changez le reste en &ldquo;squash&rdquo;.</p><p>Après avoir enregistré, vous aurez la possibilité de modifier. Par défaut, le message de validation Git sera une combinaison des messages de validation précédemment écrasés.</p><pre tabindex=0><code>echo &#34;### Bom dia&#34; &gt;&gt; README.md
+git add README.md
+git commit -m &#34;Modify README.md&#34;
+echo &#34;#### :stuck_out_tongue_winking_eye:&#34; &gt;&gt; README.md
+git add README.md
+git commit -m &#34;Modify README.md&#34;
+echo &#34;#### :smiling_imp:&#34; &gt;&gt; README.md
+git add README.md
+git commit -m &#34;Modify README.md&#34;
+git rebase -i HEAD~3
+</code></pre><pre tabindex=0><code>pick b2df124 Modify README.md
+pick aaa7398 Modify README.md
+pick 73a8f53 Modify README.md
+</code></pre><p>On modifie les pick en squash</p><pre tabindex=0><code>pick b2df124 Modify README.md
+squash aaa7398 Modify README.md
+squash 73a8f53 Modify README.md
+</code></pre><pre tabindex=0><code>git log --oneline
+</code></pre><pre tabindex=0><code>b585e82 (HEAD -&gt; master) Modify README.md
+94c0e8f modify script.sh
+4930601 Add test.sh
+d99ae1d Create tuto.txt
+ac106ed Modify tuto.txt
+</code></pre><h4 id=diviser-un-commit>Diviser un commit</h4><p>On souhaite maintenant diviser un commit en deux :</p><pre tabindex=0><code>echo &#34;#### :fire:&#34; &gt;&gt; README.md
+echo &#34;echo Hola&#34; &gt;&gt; script.sh
+git add -A
+git commit -m &#34;Modify README.mm and script.sh&#34;
+git rebase -i HEAD~1
+</code></pre><pre tabindex=0><code>pick 90464ca Modify README.md and script.sh
+edit 90464ca Modify README.mm and script.sh
+</code></pre><pre tabindex=0><code>git reset HEAD^
+git add README.md
+git commit -m &#34;Update README.md&#34;
+git add script.sh
+git commit -m &#34;Update script.sh&#34;
+git rebase --continue
+git log --oneline
+</code></pre><h4 id=submodule>SubModule</h4><p>Il arrive souvent lorsque vous travaillez sur un projet que vous deviez utiliser un autre projet comme dépendance. Cela peut être une bibliothèque qui est développée par une autre équipe ou que vous développez séparément pour l’utiliser dans plusieurs projets parents. Ce scénario provoque un problème habituel : vous voulez être capable de gérer deux projets séparés tout en utilisant l’un dans l’autre.</p><p>Git gère ce problème avec les sous-modules. Les sous-modules vous permettent de gérer un dépôt Git comme un sous-répertoire d’un autre dépôt Git. Cela vous laisse la possibilité de cloner un dépôt dans votre projet et de garder isolés les commits de ce dépôt.</p><h5 id=démarrer-un-sous-module>Démarrer un sous-module</h5><pre tabindex=0><code>git submodule add -b master https://github.com/Maxime-CLS/git-submodule-tutorial.git
+</code></pre><p>Par défaut, les sous-modules ajoutent le sous-projet dans un répertoire portant le même nom que le dépôt.</p><pre tabindex=0><code>cd git-submodule-tutorial/
+echo &#34;## tech-lunch :start:&#34; &gt;&gt; README.md
+git status
+git add README.md
+git commit -m &#34;Update README.md&#34;
+git push origin master
+cd ../
+git status
+git submodule update
+</code></pre><h4 id=remote>Remote</h4><pre tabindex=0><code>git remote -v
+
+origin	https://github.com/Maxime-CLS/git-tutorial.git (fetch)
+origin	https://github.com/Maxime-CLS/git-tutorial.git (push)
+
+
+git remote add client https://github.com/Maxime-CLS/git-tutorial-client.git
+git remote -v
+
+origin	https://github.com/Maxime-CLS/git-tutorial.git (fetch)
+origin	https://github.com/Maxime-CLS/git-tutorial.git (push)
+client	https://github.com/Maxime-CLS/git-tutorial-client.git (fetch)
+client	https://github.com/Maxime-CLS/git-tutorial-client.git (push)
+
+
+git push client master
+</code></pre><h4 id=alias>Alias</h4><pre tabindex=0><code>git config --global alias.st status
+git config --global alias.ci commit
+git config --global alias.co checkout
+git config --global alias.glog \
+&#39;log --graph --oneline --decorate --branches --tags --remotes&#39;
+</code></pre><h2 id=gitops>GitOps</h2><h3 id=terraform>Terraform</h3><p><a href=https://learn.hashicorp.com/tutorials/terraform/install-cli>docs d&rsquo;installation</a></p><p><strong>Ajouter</strong> la clé GPG HashiCorp, <strong>Ajouter</strong> le référentiel Linux officiel HashiCorp, <strong>Metter</strong> à jour et <strong>installer</strong>.</p><pre tabindex=0><code>curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+sudo apt-add-repository &#34;deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main&#34;
+sudo apt-get update &amp;&amp; sudo apt-get install terraform
+terraform -help
+terraform -install-autocomplete
+</code></pre><p>Créez un répertoire nommé gitops-docker-demo et le fichier main.tf</p><pre tabindex=0><code>mkdir gitops-docker-demo &amp;&amp; cd $_
+touch main.tf
+</code></pre><p>Avec votre IDE, écrire la configruation suivante dans main.tf :</p><pre tabindex=0><code>terraform {
+  required_providers {
+    docker = {
+      source = &#34;terraform-providers/docker&#34;
+    }
+  }
+}
+
+provider &#34;docker&#34; {}
+
+resource &#34;docker_image&#34; &#34;nginx&#34; {
+  name         = &#34;nginx:latest&#34;
+  keep_locally = false
+}
+
+resource &#34;docker_container&#34; &#34;nginx&#34; {
+  image = docker_image.nginx.latest
+  name  = &#34;tutorial&#34;
+  ports {
+    internal = 80
+    external = 8000
+  }
+}
+</code></pre><p>Initialiser le projet, qui télécharge un plugin qui permet à Terraform d&rsquo;interagir avec Docker. Provisionner le conteneur de serveur NGINX avec apply. Lorsque Terraform vous demande de confirmer le type yes appuyer sur ENTER.</p><pre tabindex=0><code>terraform init
+terraform apply
+</code></pre><p>Accéder au serveur web</p><pre tabindex=0><code>http://localhost:8000/
+</code></pre><p>Pour arrêter le conteneur, exécuter terraform destroy.</p><pre tabindex=0><code>terraform destroy
+</code></pre><p>Créer un dépôt Git pour vos configurations :</p><pre tabindex=0><code>git init
+vim .gitignore
+</code></pre><pre tabindex=0><code>.terraform
+terraform*
+</code></pre><pre tabindex=0><code>git add -A
+git ci &#34;first commit&#34;
+git remote add origin https://github.com/Maxime-CLS/gitops-docker-demo.git
+git push -u origin master
+</code></pre><h3 id=créer-une-modification-de-ma-configuration>Créer une modification de ma configuration</h3><pre tabindex=0><code>git checkout -b feature
+</code></pre><pre tabindex=0><code>terraform {
+  required_providers {
+    docker = {
+      source = &#34;terraform-providers/docker&#34;
+    }
+  }
+}
+
+provider &#34;docker&#34; {}
+
+resource &#34;docker_image&#34; &#34;nginx&#34; {
+  name         = &#34;nginx:latest&#34;
+  keep_locally = false
+}
+
+resource &#34;docker_container&#34; &#34;nginx&#34; {
+  count = 2
+  image = docker_image.nginx.latest
+  name  = &#34;tutorial-${count.index+1}&#34;
+  ports {
+    internal = 80
+  }
+}
+</code></pre><pre tabindex=0><code>terraform apply
+</code></pre><pre tabindex=0><code>git add main.tf
+git ci &#34;Add feature&#34;
+git push origin feature
+</code></pre><pre tabindex=0><code>git branch -D feature
+docker ps
+</code></pre><pre tabindex=0><code>http://localhost:XXXXX/
+http://localhost:XXXXX/
+</code></pre><pre tabindex=0><code>git revert HEAD
+terraform apply
+docker ps
+</code></pre><pre tabindex=0><code>http://localhost:XXXXX/
+</code></pre><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/git-tutorial/git/ title=Elastic><i class="fa fa-chevron-left"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/git-tutorial/js/clipboard.min.js?1652370259></script>
+<script src=/git-tutorial/js/perfect-scrollbar.min.js?1652370259></script>
+<script src=/git-tutorial/js/perfect-scrollbar.jquery.min.js?1652370259></script>
+<script src=/git-tutorial/js/jquery.sticky.js?1652370259></script>
+<script src=/git-tutorial/js/featherlight.min.js?1652370259></script>
+<script src=/git-tutorial/js/highlight.pack.js?1652370259></script>
+<script>hljs.initHighlightingOnLoad()</script><script src=/git-tutorial/js/modernizr.custom-3.6.0.js?1652370259></script>
+<script src=/git-tutorial/js/learn.js?1652370259></script>
+<script src=/git-tutorial/js/hugo-learn.js?1652370259></script>
+<script src=/git-tutorial/mermaid/mermaid.js?1652370259></script>
+<script>mermaid.initialize({startOnLoad:!0})</script></body></html>
